@@ -1,0 +1,13 @@
+# LinkedIn Automation - crontab entries
+# Install with: crontab -e   (then paste these lines, adjusting the path)
+#
+# IMPORTANT: cron runs with a minimal environment, so we cd into the
+# project dir and call the venv/system python directly. Adjust PROJECT_DIR
+# and PYTHON_BIN to match your setup.
+
+# --- Generate a new draft at 9 AM and 7 PM daily ---
+0 9 * * * cd /home/youruser/linkedin-automation/scripts && /usr/bin/python3 main.py >> /home/youruser/linkedin-automation/data/main.log 2>&1
+0 19 * * * cd /home/youruser/linkedin-automation/scripts && /usr/bin/python3 main.py >> /home/youruser/linkedin-automation/data/main.log 2>&1
+
+# --- Check for your email reply every 2 minutes ---
+*/2 * * * * cd /home/youruser/linkedin-automation/scripts && /usr/bin/python3 check_replies.py >> /home/youruser/linkedin-automation/data/replies.log 2>&1
